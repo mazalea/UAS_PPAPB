@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_black"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".EditMovieActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginRight="100dp"
+                android:background="@drawable/baseline_arrow_back_24"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Movie"
+                android:textColor="@color/primary_white"
+                android:textSize="23sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/poster_2"/>
+
+        <EditText
+            android:id="@+id/edt_edit_title"
+            android:layout_width="288dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="35dp"
+            android:paddingLeft="20dp"
+            android:hint="Title"
+            android:textColorHint="@color/primary_white"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/input_field"/>
+
+        <EditText
+            android:id="@+id/edt_edit_director"
+            android:layout_width="288dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="20dp"
+            android:hint="Director"
+            android:textColorHint="@color/primary_white"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/input_field"/>
+
+        <EditText
+            android:id="@+id/edt_edit_time"
+            android:layout_width="288dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="20dp"
+            android:hint="Time"
+            android:textColorHint="@color/primary_white"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/input_field"/>
+
+        <EditText
+            android:id="@+id/edt_edit_rating"
+            android:layout_width="288dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="20dp"
+            android:hint="Rating"
+            android:textColorHint="@color/primary_white"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/input_field"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_update"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="35dp"
+            android:text="Update"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/button"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:text="Delete"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/button"/>
+
+    </LinearLayout>
+</ScrollView>
