@@ -48,6 +48,14 @@ class AddMovieActivity : AppCompatActivity() {
             getContent.launch("image/*")
         }
 
+        val backAddButton: ImageView = findViewById(R.id.btn_back)
+
+        backAddButton.setOnClickListener {
+            // Navigate to AdminDashboardActivity
+            val intent = Intent(this@AddMovieActivity, AdminDashboardActivity::class.java)
+            startActivity(intent)
+            finish() // Optional: Close the current activity to avoid going back to it with the back button
+        }
 
     }
 

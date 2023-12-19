@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/btn_back_edit"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginRight="100dp"
@@ -34,6 +35,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/img_edit_poster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"

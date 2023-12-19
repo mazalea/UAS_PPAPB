@@ -1,5 +1,6 @@
 package com.example.uas_ppapb
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,17 @@ class MovieAdapter (private val movieList: ArrayList<Movie>) :
             .skipMemoryCache(true) // Skip caching in memory
             .diskCacheStrategy(DiskCacheStrategy.NONE) // Skip caching on disk
             .into(holder.imgPiw)
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context,EditMovieActivity::class.java)
+            intent.putExtra("title",movie.title)
+            intent.putExtra("director",movie.director)
+            intent.putExtra("time",movie.time)
+            intent.putExtra("rate",movie.rate)
+            intent.putExtra("imgId", movie.imageUrl)
+            holder.itemView.context.startActivity(intent)
+        }
     }
+
 
 }

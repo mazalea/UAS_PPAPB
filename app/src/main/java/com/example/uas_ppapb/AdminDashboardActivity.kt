@@ -71,6 +71,7 @@ class AdminDashboardActivity : AppCompatActivity() {
 
                 movieAdapter.notifyDataSetChanged()
 
+                // Notify the adapter that the data has changed
                 Log.d("msg",itemList.size.toString())
                 Log.d("NEW",itemList.toString())
                 Log.d("NEW",itemList.toString())
