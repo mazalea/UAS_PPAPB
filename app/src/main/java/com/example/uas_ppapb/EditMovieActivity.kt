@@ -74,6 +74,11 @@ class EditMovieActivity : AppCompatActivity() {
         updateButton.setOnClickListener {
             uploadData(imageUri)
         }
+
+        val deleteButton: Button = findViewById(R.id.btn_delete)
+        deleteButton.setOnClickListener {
+            deleteDataAndImage()
+        }
     }
 
     private fun uploadData(imageUri: Uri? = null) {
@@ -87,7 +92,6 @@ class EditMovieActivity : AppCompatActivity() {
         if (imageUri != null) {
             // Generate a unique ID for the image
             val imageId = Uri.parse(intent.getStringExtra("imgId")).lastPathSegment?.removePrefix("images/")
-            Log.d("msg","ID NYA TUUUU $imageId")
 
             // Upload image to Firebase Storage with the generated ID
             storageReference = FirebaseStorage.getInstance().reference.child("images/$imageId")
@@ -139,6 +143,40 @@ class EditMovieActivity : AppCompatActivity() {
                     Toast.makeText(this, "Updating Data Failed!", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
+
+
+    private fun deleteDataAndImage() {
+        val imageId = Uri.parse(intent.getStringExtra("imgId")).lastPathSegment?.removePrefix("images/")
+
+        if (imageId.isNullOrEmpty()) {
+            Toast.makeText(this, "Image ID is null or empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Create a reference to the image in Firebase Storage
+        val storageReference = FirebaseStorage.getInstance().reference.child("images/$imageId")
+
+        // Delete the image from Firebase Storage
+        storageReference.delete()
+            .addOnSuccessListener {
+                // Delete data from Firebase Realtime Database after successfully deleting the image
+                val databaseReference = FirebaseDatabase.getInstance().getReference("Movie") // Update the reference
+                databaseReference.child(imageId).removeValue()
+                    .addOnCompleteListener {
+                        // Handle completion, e.g., show a success message
+                        Toast.makeText(this, "Data Deleted Successfully", Toast.LENGTH_SHORT).show()
+
+                        // Optionally, you can navigate back to AdminDashboardActivity or finish the current activity
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Deleting Data Failed!", Toast.LENGTH_SHORT).show()
+                    }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Deleting Image Failed!", Toast.LENGTH_SHORT).show()
+            }
     }
 
 }
