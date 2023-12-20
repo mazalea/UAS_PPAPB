@@ -66,11 +66,11 @@ class RegisterFragment : Fragment() {
 
         registerNow.setOnClickListener {
             if (email.text.toString().isEmpty()) {
-                Toast.makeText(requireActivity(), "PLEASE FILL THE EMAIl", Toast.LENGTH_SHORT)
+                Toast.makeText(requireActivity(), "Email Required", Toast.LENGTH_SHORT)
                     .show()
             }
             if (password.text.toString().isEmpty()) {
-                Toast.makeText(requireActivity(), "PLEASE FILL THE PASSWORD", Toast.LENGTH_SHORT)
+                Toast.makeText(requireActivity(), "Password Required", Toast.LENGTH_SHORT)
                     .show()
             }
 
@@ -88,7 +88,7 @@ class RegisterFragment : Fragment() {
                             confirmPassword.text?.clear()
                             Toast.makeText(
                                 requireActivity(),
-                                "Login Successfull!",
+                                "Register Successfull! Please Log In",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }

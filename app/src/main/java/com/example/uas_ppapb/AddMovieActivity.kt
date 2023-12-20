@@ -30,7 +30,6 @@ class AddMovieActivity : AppCompatActivity() {
             if (uri != null) {
                 imageUri = uri
                 binding.imgAddPoster.setImageURI(uri)
-                // Optionally, you can call uploadData(imageUri) here if needed
             }
         }
 

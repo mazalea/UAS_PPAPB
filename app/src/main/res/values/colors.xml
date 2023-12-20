@@ -8,4 +8,6 @@
     <color name="brick">#B81D25</color>
     <color name="red">#E50915</color>
     <color name="yellow">#FFD600</color>
+    <color name="selected_color">#B81D25</color>
+    <color name="unselected_color">#F5F6F1</color>
 </resources>
