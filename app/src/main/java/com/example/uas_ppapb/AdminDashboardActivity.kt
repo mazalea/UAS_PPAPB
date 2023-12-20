@@ -3,9 +3,7 @@ package com.example.uas_ppapb
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +13,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.FirebaseFirestore
 
 class AdminDashboardActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAdminDashboardBinding
@@ -29,12 +26,9 @@ class AdminDashboardActivity : AppCompatActivity() {
         binding = ActivityAdminDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         Log.d("NEW222","INGPO ITEMLIST")
         Log.d("NEW222","INGPO ITEMLIST")
         Log.d("NEW222","INGPO ITEMLIST")
-
 
         recyclerView = findViewById(R.id.rv_movie_admin)
         recyclerView.setHasFixedSize(true)
@@ -44,17 +38,13 @@ class AdminDashboardActivity : AppCompatActivity() {
         movieAdapter = MovieAdapter(itemList)
         recyclerView.adapter = movieAdapter
 
-
-
         with(binding){
             floatingButton.setOnClickListener{
                 startActivity(Intent(this@AdminDashboardActivity, AddMovieActivity::class.java))
             }
         }
 
-
         // Pass the onItemClick function to the MovieAdapter constructor
-
         database = FirebaseDatabase.getInstance().getReference("Movie")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -76,7 +66,6 @@ class AdminDashboardActivity : AppCompatActivity() {
                 Log.d("NEW",itemList.toString())
                 Log.d("NEW",itemList.toString())
                 Log.d("NEW",itemList.toString())
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -84,7 +73,6 @@ class AdminDashboardActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Data retrieval failed!", Toast.LENGTH_SHORT).show()
             }
         })
-
 
     }
 }

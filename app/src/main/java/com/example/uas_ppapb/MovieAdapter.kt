@@ -58,6 +58,4 @@ class MovieAdapter (private val movieList: ArrayList<Movie>) :
             holder.itemView.context.startActivity(intent)
         }
     }
-
-
 }

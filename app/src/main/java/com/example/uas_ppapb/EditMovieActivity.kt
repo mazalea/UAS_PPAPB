@@ -24,21 +24,19 @@ class EditMovieActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditMovieBinding
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
-    private lateinit var imageUri : Uri
+    private var imageUri : Uri ?= null
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
                 imageUri = uri
                 binding.imgEditPoster.setImageURI(uri)
-                // Optionally, you can call uploadData(imageUri) here if needed
             }
         }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         val originalImageUrl = intent.getStringExtra("imgId")
         Glide.with(this@EditMovieActivity)
