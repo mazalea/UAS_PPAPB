@@ -63,11 +63,11 @@ class AddMovieActivity : AppCompatActivity() {
         val director: String = binding.edtAddDirector.text.toString()
         val time: String = binding.edtAddTime.text.toString()
         val rate: String = binding.edtAddRating.text.toString()
+        val synopsis: String = binding.edtAddSynopsis.text.toString()
 
         val imageId = UUID.randomUUID().toString()
 
-        if (title.isNotEmpty() && director.isNotEmpty() && time.isNotEmpty() && rate.isNotEmpty() && imageUri != null) {
-            // Generate a unique ID for the image
+        if (title.isNotEmpty() && director.isNotEmpty() && time.isNotEmpty() && rate.isNotEmpty() && synopsis.isNotEmpty() && imageUri != null) {
 
             // Upload image to Firebase Storage with the generated ID
             storageReference = FirebaseStorage.getInstance().reference.child("images/$imageId")
@@ -76,7 +76,7 @@ class AddMovieActivity : AppCompatActivity() {
             uploadTask.addOnSuccessListener {
                 // Image uploaded successfully, now get the download URL
                 storageReference.downloadUrl.addOnSuccessListener { imageUrl ->
-                    val item = Movie(title, director, time, rate, imageUrl.toString())
+                    val item = Movie(title, director, time, rate, synopsis, imageUrl.toString())
                     database = FirebaseDatabase.getInstance().getReference("Movie")
                     database.child(imageId).setValue(item)
                         .addOnCompleteListener {
@@ -84,6 +84,7 @@ class AddMovieActivity : AppCompatActivity() {
                             binding.edtAddDirector.text!!.clear()
                             binding.edtAddTime.text!!.clear()
                             binding.edtAddRating.text!!.clear()
+                            binding.edtAddSynopsis.text!!.clear()
 
 //                            showNotification("Data Uploaded Successfully")
 

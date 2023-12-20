@@ -50,11 +50,13 @@ class EditMovieActivity : AppCompatActivity() {
         val director = binding.edtEditDirector
         val time = binding.edtEditTime
         val rating = binding.edtEditRating
+        val synopsis = binding.edtEditSynopsis
 
         title.setText(intent.getStringExtra("title"))
         director.setText(intent.getStringExtra("director"))
         time.setText(intent.getStringExtra("time"))
-        rating.setText(intent.getStringExtra("rating"))
+        rating.setText(intent.getStringExtra("rate"))
+        synopsis.setText(intent.getStringExtra("synopsis"))
 
 
         backEditButton.setOnClickListener {
@@ -84,6 +86,7 @@ class EditMovieActivity : AppCompatActivity() {
         val updatedDirector = binding.edtEditDirector.text.toString()
         val updatedTime = binding.edtEditTime.text.toString()
         val updatedRating = binding.edtEditRating.text.toString()
+        val updatedSynopsis = binding.edtEditSynopsis.text.toString()
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Movie")
 
@@ -106,6 +109,7 @@ class EditMovieActivity : AppCompatActivity() {
                             binding.edtEditDirector.text!!.clear()
                             binding.edtEditTime.text!!.clear()
                             binding.edtEditRating.text!!.clear()
+                            binding.edtEditSynopsis.text!!.clear()
                             startActivity(Intent(this, AdminDashboardActivity::class.java))
                             Toast.makeText(this, "Data Uploaded Successfully", Toast.LENGTH_SHORT).show()
                         }
@@ -124,7 +128,8 @@ class EditMovieActivity : AppCompatActivity() {
                 "title" to updatedTitle,
                 "director" to updatedDirector,
                 "time" to updatedTime,
-                "rate" to updatedRating
+                "rate" to updatedRating,
+                "synopsis" to updatedSynopsis
             )
 
             // Update the data with the new title
@@ -135,6 +140,7 @@ class EditMovieActivity : AppCompatActivity() {
                     binding.edtEditDirector.text!!.clear()
                     binding.edtEditTime.text!!.clear()
                     binding.edtEditRating.text!!.clear()
+                    binding.edtEditSynopsis.text!!.clear()
                     Toast.makeText(this, "Data Updated Successfully", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {

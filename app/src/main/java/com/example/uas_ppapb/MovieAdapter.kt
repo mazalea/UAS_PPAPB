@@ -49,12 +49,13 @@ class MovieAdapter (private val movieList: ArrayList<Movie>) :
             .into(holder.imgPiw)
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(holder.itemView.context,EditMovieActivity::class.java)
+            val intent = Intent(holder.itemView.context, EditMovieActivity::class.java)
             intent.putExtra("title",movie.title)
             intent.putExtra("director",movie.director)
             intent.putExtra("time",movie.time)
             intent.putExtra("rate",movie.rate)
             intent.putExtra("imgId", movie.imageUrl)
+            intent.putExtra("synopsis",movie.synopsis)
             holder.itemView.context.startActivity(intent)
         }
     }

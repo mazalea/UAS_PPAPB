@@ -85,9 +85,20 @@
             android:textColor="@color/primary_white"
             android:background="@drawable/input_field"/>
 
+        <EditText
+            android:id="@+id/edt_add_synopsis"
+            android:layout_width="288dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="20dp"
+            android:hint="Synopsis"
+            android:textColorHint="@color/primary_white"
+            android:textColor="@color/primary_white"
+            android:background="@drawable/input_field"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add"
-            android:layout_width="200dp"
+            android:layout_width="288dp"
             android:layout_height="48dp"
             android:layout_marginTop="35dp"
             android:text="Add Movie"

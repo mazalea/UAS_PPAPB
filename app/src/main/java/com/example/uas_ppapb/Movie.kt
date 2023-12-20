@@ -9,9 +9,11 @@ data class Movie(
     val director: String = "",
     val time: String = "",
     val rate: String = "",
+    val synopsis: String = "",
     val imageUrl: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -24,6 +26,7 @@ data class Movie(
         parcel.writeString(director)
         parcel.writeString(time)
         parcel.writeString(rate)
+        parcel.writeString(synopsis)
         parcel.writeString(imageUrl)
     }
 
