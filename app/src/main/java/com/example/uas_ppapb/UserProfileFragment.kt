@@ -31,9 +31,16 @@ class UserProfileFragment : Fragment() {
         auth = Firebase.auth
         sharePreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE)
 
-        binding.edtProfileEmail.setText(auth.currentUser!!.email)
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            binding.edtProfileEmail.setText(currentUser.email)
+        }
+
+//        binding.edtProfileEmail.setText(auth.currentUser!!.email)
 
         binding.btnLogout.setOnClickListener{
+            sharePreferences.edit().putBoolean("isLoggedIn", false).apply()
+
             startActivity(Intent(requireActivity(), MainActivity::class.java))
             Firebase.auth.signOut()
         }

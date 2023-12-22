@@ -37,10 +37,6 @@ class AdminDashboardActivity : AppCompatActivity() {
         binding = ActivityAdminDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("NEW222","INGPO ITEMLIST")
-        Log.d("NEW222","INGPO ITEMLIST")
-        Log.d("NEW222","INGPO ITEMLIST")
-
         recyclerView = findViewById(R.id.rv_movie_admin)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -56,12 +52,18 @@ class AdminDashboardActivity : AppCompatActivity() {
         }
 
         auth = Firebase.auth
-        sharedPreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        binding.btnAdminLogout.setOnClickListener{
+            val sharedPreferences = this.getSharedPreferences("user_data", Context.MODE_PRIVATE)
+            sharedPreferences.edit().putBoolean("isLoggedIn", false).apply()
 
-        binding.btnAdminLogout.setOnClickListener {
-            startActivity(Intent(this@AdminDashboardActivity, MainActivity::class.java))
-            Firebase.auth.signOut()
+            auth.signOut()
+            startActivity(Intent(this@AdminDashboardActivity,MainActivity::class.java))
         }
+
+//        binding.btnAdminLogout.setOnClickListener {
+//            startActivity(Intent(this@AdminDashboardActivity, MainActivity::class.java))
+//            Firebase.auth.signOut()
+//        }
 
         // Pass the onItemClick function to the MovieAdapter constructor
         database = FirebaseDatabase.getInstance().getReference("Movie")
