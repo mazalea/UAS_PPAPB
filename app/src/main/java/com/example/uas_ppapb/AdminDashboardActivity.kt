@@ -1,13 +1,22 @@
 package com.example.uas_ppapb
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uas_ppapb.databinding.ActivityAdminDashboardBinding
+import com.example.uas_ppapb.databinding.FragmentUserProfileBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,6 +29,8 @@ class AdminDashboardActivity : AppCompatActivity() {
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var itemList : ArrayList<Movie>
     private lateinit var database : DatabaseReference
+    private lateinit var auth : FirebaseAuth
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +53,14 @@ class AdminDashboardActivity : AppCompatActivity() {
             floatingButton.setOnClickListener{
                 startActivity(Intent(this@AdminDashboardActivity, AddMovieActivity::class.java))
             }
+        }
+
+        auth = Firebase.auth
+        sharedPreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE)
+
+        binding.btnAdminLogout.setOnClickListener {
+            startActivity(Intent(this@AdminDashboardActivity, MainActivity::class.java))
+            Firebase.auth.signOut()
         }
 
         // Pass the onItemClick function to the MovieAdapter constructor
@@ -73,6 +92,6 @@ class AdminDashboardActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Data retrieval failed!", Toast.LENGTH_SHORT).show()
             }
         })
-
     }
+
 }

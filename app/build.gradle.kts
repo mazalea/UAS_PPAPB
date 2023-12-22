@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id ("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -58,4 +59,9 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    // room
+    implementation ("androidx.room:room-runtime:2.4.0") // Use the latest version
+    kapt( "androidx.room:room-compiler:2.4.0")
+
 }

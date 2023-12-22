@@ -3,7 +3,6 @@ package com.example.uas_ppapb
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.uas_ppapb.databinding.FragmentLoginBinding
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.firestore.FirebaseFirestore
-
 
 
 class LoginFragment : Fragment() {
@@ -53,7 +49,7 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireActivity(), "Please Fill the Email!", Toast.LENGTH_SHORT).show()
             }
             if (password.text.toString().isEmpty()) {
-                Toast.makeText(requireActivity(), "Please Fill the Email!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Please Fill the Password!", Toast.LENGTH_SHORT).show()
             }
 
             auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
@@ -67,12 +63,7 @@ class LoginFragment : Fragment() {
                                 // User is an admin, redirect to Admin activity
                                 editor.putString("email", email.text.toString())
                                 editor.putString("password", password.text.toString())
-                                Log.d("berhasil","BARUUUU")
-                                Log.d("berhasil","BARUUUU")
-                                Log.d("berhasil","BARUUUU")
-                                Log.d("berhasil","BARUUUU")
                                 editor.apply()
-                                Log.d("berhasil","BARUUUU")
                                 startActivity(Intent(requireActivity(), AdminDashboardActivity::class.java))
                             } else {
                                 // User is not an admin, redirect to User activity
