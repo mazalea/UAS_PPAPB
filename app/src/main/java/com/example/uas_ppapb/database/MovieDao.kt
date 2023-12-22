@@ -14,8 +14,8 @@ interface MovieDao {
     @Query("SELECT * FROM movie_table WHERE id = :moviesId")
     fun getMoviesById(moviesId: String): LiveData<MovieRoom>
 
-    @get:Query("SELECT * FROM movie_table ORDER BY id ASC")
-    val getAllMovies: LiveData<List<MovieRoom>>
+    @Query("SELECT * FROM movie_table")
+    fun getAllMovies(): List<MovieRoom>
 
     @Query("DELETE FROM movie_table")
     fun deleteAllMovies()
